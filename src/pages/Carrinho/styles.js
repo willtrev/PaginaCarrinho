@@ -14,7 +14,7 @@ export const Boxcontato = styled.div`
 
 `;
 
-export const Contato = styled.div`
+export const TextIcon = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,11 +30,11 @@ export const Contato = styled.div`
   }
 `;
 
-export const ContatoGroup = styled.div`
+export const TextGroup = styled.div`
   display: flex;
   flex-direction: row;
 
-  & > ${Contato} {
+  & > ${TextIcon} {
     padding-left: 20px;
   }
 `;
@@ -47,12 +47,15 @@ export const Boxmarca = styled.div`
 
 `;
 
-export const Boxmenu = styled.div`
+/* Estilazação da NavBar */
+
+export const NavBar = styled.div`
   height: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  justify-self: center;
   margin: 10px 0;
   
   p {
@@ -64,23 +67,25 @@ export const Boxmenu = styled.div`
 `;
 
 export const MenuGroup = styled.div`
+  width: 210px;
+  margin-right: auto;
   display: flex;
   flex-direction: row;
 
-  & > ${Contato} {
+  & > ${TextIcon} {
     padding-right: 20px;
   }
 `;
+
+
 
 export const Busca = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid black;
-  
 
   input {
-    justify-items: flex-start;
     height: 20px;
     width: 300px;
     padding: 0px;
@@ -92,6 +97,26 @@ export const Busca = styled.form`
     font-weight: medium;
   }
 
+`;
+
+export const Total = styled.div`
+  width: 210px;
+  margin-left: auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+  height: 55px;
+
+  padding: 20px 0 15px 0;
+
+  font-size: 12px;
+  font-family:'Roboto', sans-serif;
+
+  p {
+    margin-left: 5px;
+  }
 `;
 
 /* Estilização da primeira section */

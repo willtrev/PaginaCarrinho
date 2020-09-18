@@ -4,33 +4,33 @@ import { MdPerson, MdLocationOn, MdShoppingCart, MdMenu, MdSearch } from 'react-
 
 import SuaMarca from '../../assets/SuaMarca.jpg';
 
-import { Contato, Boxcontato, Boxmarca, Boxmenu, Header, ContatoGroup, MenuGroup, Busca, Section } from './styles';
+import { TextIcon, Boxcontato, Boxmarca, NavBar, Header, TextGroup, MenuGroup, Busca, Section, Total, Centraliza } from './styles';
 
 const Carrinho = () => {
   return(
     <>
       <Header>
         <Boxcontato>
-          <Contato> <FaWhatsapp size="20px" /> <p>(47) 9999-9999</p> </Contato>
-          <ContatoGroup>
-            <Contato> <MdPerson size="20px" /> <p>Aretusa</p> </Contato>
-            <Contato> <MdLocationOn size="20px" /> <p>Bom Retiro - Joinville, SC</p> </Contato>
-          </ContatoGroup>
+          <TextIcon> <FaWhatsapp size="20px" /> <p>(47) 9999-9999</p> </TextIcon>
+          <TextGroup>
+            <TextIcon> <MdPerson size="20px" /> <p>Aretusa</p> </TextIcon>
+            <TextIcon> <MdLocationOn size="20px" /> <p>Bom Retiro - Joinville, SC</p> </TextIcon>
+          </TextGroup>
         </Boxcontato>
         <Boxmarca>
           <img src={SuaMarca} alt=""/>
         </Boxmarca>
-        <Boxmenu>
+        <NavBar>
           <MenuGroup>
-            <Contato> <MdMenu size="20px" /> <p>SETORES</p> </Contato>
-            <Contato> <p>OFERTAS</p> </Contato>
+            <TextIcon> <MdMenu size="20px" /> <p>SETORES</p> </TextIcon>
+            <TextIcon> <p>OFERTAS</p> </TextIcon>
           </MenuGroup>
           <Busca> 
             <input placeholder="O que voce procura?"/>
             <MdSearch></MdSearch>
           </Busca>
-          <Contato> <MdShoppingCart size="24px" color="red" /> <p>R$ 49,49</p> </Contato>
-        </Boxmenu>
+          <Total> <MdShoppingCart size="24px" color="red" /> <p>R$ 49,49</p> </Total>
+        </NavBar>
       </Header>
       <Section></Section>
     </>
