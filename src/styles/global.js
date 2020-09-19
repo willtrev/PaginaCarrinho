@@ -9,7 +9,7 @@ export default createGlobalStyle`
   }
 
   #root {
-    max-width: 968px;
+    max-width: 1024px;
     margin: 0 auto;
   }
 `;
