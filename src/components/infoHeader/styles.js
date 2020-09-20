@@ -5,8 +5,7 @@ import styled from 'styled-components';
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: 0;
+  
   background-color: #fff
 `;
 

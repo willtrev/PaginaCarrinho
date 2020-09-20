@@ -20,7 +20,6 @@ export const NavBar = styled.div`
   height: 20px;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   align-items: center;
   justify-self: center;
   margin: 10px 0;

@@ -1,15 +1,36 @@
 import React from 'react';
 
-import { Shopping, Cart, Resumo, Box, ButtonF } from './styles';
+import { Shopping, ProductList, Resumo, Box, ButtonF, Descricao, Title, TextIcon, Contador, ValorTotal } from './styles';
+import { BiComment } from 'react-icons/bi';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { IoMdTrash } from 'react-icons/io';
 
 
 const shoppingCart = () => {
   return(
     <>
       <Shopping>
-        <h1>Carrinho</h1>
+        <Title>Carrinho</Title>
         <div>
-          <Cart></Cart>
+          <ProductList>
+            <li>
+              <img src="https://simplest-meuspedidos-arquivos.s3.amazonaws.com/media/imagens_auto/alimentos/arroz_pacote.jpg" alt="a"></img>
+              <Descricao>
+                <h1>REFRIGERANTE 2 LITROS</h1>
+                <p>SKU 123213217</p>
+                <TextIcon> <BiComment size="20px" /> <p>Adicionar observação</p> </TextIcon>
+              </Descricao>
+              <Contador>
+                <button><AiOutlineMinus size="20px" color="grey"/></button>
+                <p>2</p>
+                <button><AiOutlinePlus size="20px"color="red"/></button>
+              </Contador>
+              <ValorTotal>
+                <p>R$ 12,50</p>
+                <IoMdTrash size="20px" color="red" />
+              </ValorTotal>
+            </li>
+          </ProductList>
           <Resumo>
             <Box><h1>RESUMO DO PEDIDO</h1></Box>
             <article>
@@ -33,18 +54,6 @@ const shoppingCart = () => {
           </Resumo>
         </div>
       </Shopping>
-      <Cart>
-        {/* <Produto>
-          <img></img>
-          <Descrição>
-            <Nome></Nome>
-            <CodProd></CodProd>
-            <TextIcon></TextIcon>
-          </Descrição>
-          <Contador></Contador>
-          <Valor></Valor>
-        </Produto> */}
-      </Cart>
     </>
   ) 
 }
