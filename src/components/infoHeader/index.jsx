@@ -19,7 +19,6 @@ const infoHeader = () => {
       <Boxmarca>
         <img src={SuaMarca} alt=""/>
       </Boxmarca>
-      
     </Header>
   )
 }
