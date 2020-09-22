@@ -129,6 +129,11 @@ export const Descricao = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+
+  button {
+    border: none;
+    background-color: white;
+  }
   
 
   h1 {
@@ -207,6 +212,11 @@ export const ValorTotal = styled.div`
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 500;
+  }
+
+  button {
+    border: none;
+    background-color: white;
   }
 `;
 
