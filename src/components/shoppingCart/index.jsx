@@ -11,33 +11,66 @@ import { MdRemove, MdAdd } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 
 function ShoppingCart() {
+  const [descQntMin, setDescQntMin] = useState([]);
+  const [descValorMin, setDescValorMin] = useState([]);
+
+
   const info = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
-  // const [products, setProducts] = useState([]);
-   
+  function increment(product){
+    dispatch(CartActions.updateAmount(product.id, product.quantidade + 1))
+  };
+
+  function decrement(product){
+    dispatch(CartActions.updateAmount(product.id, product.quantidade - 1))
+  };
+  
 
   useEffect(() => {
-    api.get('/carrinho').then(response=> {
+    api.get('/politicas-comerciais').then(resp => {
+      const data = resp.data.map(desc => {
+        if (desc.tipo === 'valor_minimo'){
+          setDescValorMin(desc);
+        } else if (desc.tipo === 'quantidade_itens_minima') {
+          setDescQntMin(desc);
+        }
+      });
+    })
+  }, [])
+
+  useEffect(() => {
+    api.get('/carrinho').then(response => {
       const data = response.data.map(product => ({
         ...product,
         priceFormatted: formatPrice(product.valor_unitario),
       }));
-      // setProducts(data);
       data.map(produto => (
-        dispatch(CartActions.addToCart(produto))))
+        dispatch(CartActions.addToCart(produto))
+      ))
     });
   // eslint-disable-next-line
   }, []);
 
-  const handleAddProduct = product => dispatch({
-    type: 'ADD_TO_CART',
-    product,
-  })
+  const amount = info.reduce((amount, product) => {
+    return (amount += product.quantidade);
+  }, 0);
 
-  // const asdf = product = (
-  //   product.quantidade.reduce();
-  // )
+  const total = (info.reduce((total, product) => {
+    return total + product.valor_unitario * product.quantidade;
+  }, 0));
+
+  function desconto(){
+    if (amount >= descQntMin.valor){
+      return (total * descQntMin.desconto_percentual / 100) 
+    } else if (total >= descValorMin.valor ){
+      return (total * descValorMin.desconto_percentual / 100) 
+    } else if (amount >= descQntMin.valor && total >= descValorMin.valor){
+      return (total * (Math.max(descValorMin.desconto_percentual, descQntMin.desconto_percentual)) / 100) 
+    }else {
+      return 0;
+    }
+  }
 
   return(
     <>
@@ -59,9 +92,9 @@ function ShoppingCart() {
                   </button>
                 </Descricao>
                 <Contador>
-                  <button><MdRemove size="20px" color="grey" /></button>
+                  <button><MdRemove size="20px" color="grey" onClick={() => decrement(product)}/></button>
                   <p>{product.quantidade}</p>
-                  <button><MdAdd size="20px"color="red" onClick={() => handleAddProduct(product)}/></button>
+                  <button><MdAdd size="20px"color="red" onClick={() => increment(product)}/></button>
                 </Contador>
                 <ValorTotal>
                   <p>{product.priceFormatted}</p>
@@ -80,19 +113,19 @@ function ShoppingCart() {
             <article>
               <div>
               <p>Itens</p>
-              <p>{ info.length }</p>
+              <p>{ amount }</p>
               </div>
               <div>
                 <p>Total em produtos</p> 
-                <p>R$ 62,62</p>
+                <p>{ formatPrice(total) }</p>
               </div>
               <div>
                 <p>Descontos</p>
-                <p>R$ 0,00</p>
+                <p>{ formatPrice(desconto()) }</p>
               </div>
             </article>
             <div>
-              <h2>Total</h2> <h2>R$ 62,62</h2>
+              <h2>Total</h2> <h2>{ formatPrice(total - desconto()) }</h2>
             </div>
             <ButtonF><button>Finalizar a compra</button></ButtonF>
           </Resumo>
@@ -103,6 +136,4 @@ function ShoppingCart() {
 }
 
 export default ShoppingCart;
-// export default connect(state => ({
-//   cartSize: state.cart.lenght,
-// }))(ShoppingCart);
+
