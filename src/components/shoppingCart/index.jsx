@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { formatPrice } from '../../util/format';
-
 import api from '../../services/api';
+
+import * as CartActions from '../../store/modules/cart/actions';
 
 import { Shopping, ProductList, Resumo, Box, ButtonF, Descricao, Title, TextIcon, Contador, ValorTotal } from './styles';
 import { BiComment } from 'react-icons/bi';
@@ -24,10 +25,7 @@ function ShoppingCart() {
       }));
       // setProducts(data);
       data.map(produto => (
-        dispatch({
-          type: 'ADD_TO_CART',
-          product: produto,
-      })))
+        dispatch(CartActions.addToCart(produto))))
     });
   // eslint-disable-next-line
   }, []);
@@ -68,7 +66,7 @@ function ShoppingCart() {
                 <ValorTotal>
                   <p>{product.priceFormatted}</p>
                   <button type="button" onClick={()=>
-                    dispatch({type: 'REMOVE_FROM_CART', id: product.id})
+                    dispatch(CartActions.removeFromCart(product.id))
                   }>
                     <IoMdTrash size="20px" color="red" />
                   </button>
