@@ -1,7 +1,24 @@
 import React from 'react';
 
-const Checkout = () => {
-  return <h1>Checkout</h1>
+import InfoHeader from '../../components/infoHeader';
+import Checkout from '../../components/checkout';
+import PosNav from '../../components/posNav';
+import NavigationBar from '../../components/navigationBar';
+import Footer from '../../components/footer';
+
+import { StickTop } from './styles' ;
+
+const Carrinho = () => {
+  return(
+    <>
+      <StickTop>
+        <InfoHeader />
+        <NavigationBar />
+      </StickTop>
+      <PosNav />
+      <Checkout />
+    </>
+  ) 
 }
 
-export default Checkout;
+export default Carrinho;

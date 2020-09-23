@@ -1,17 +1,18 @@
-import React, { useState, useEffect   } from 'react';
-import { MdShoppingCart, MdMenu, MdSearch } from 'react-icons/md';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { formatPrice } from '../../util/format';
 import { Link } from 'react-router-dom';
-
 import api from '../../services/api';
 
-import { TextIcon, NavBar, MenuGroup, Busca, Total } from './styles';
-import { useSelector } from 'react-redux'
 
-const NavigationBar = () => {
-  const info = useSelector(state => state.cart);
+import {  Resumo, Box, ButtonF } from './styles';
+
+
+function ResumoPedido(link) {
   const [descQntMin, setDescQntMin] = useState([]);
   const [descValorMin, setDescValorMin] = useState([]);
+
+  const info = useSelector(state => state.cart);
 
   useEffect(() => {
     api.get('/politicas-comerciais').then(resp => {
@@ -46,18 +47,31 @@ const NavigationBar = () => {
   }
 
   return(
-    <NavBar>
-      <MenuGroup>
-        <TextIcon> <MdMenu size="20px" /> <p>SETORES</p> </TextIcon>
-        <TextIcon> <p>OFERTAS</p> </TextIcon>
-      </MenuGroup>
-      <Busca> 
-        <input placeholder="O que voce procura?"/>
-        <MdSearch></MdSearch>
-      </Busca>
-      <Total to="/"> <MdShoppingCart size="24px" color="red" /> <p>{formatPrice(total - desconto())}</p> </Total>
-    </NavBar>
-  )
+    <Resumo>
+      <Box><h1>RESUMO DO PEDIDO</h1></Box>
+      <article>
+        <div>
+        <p>Itens</p>
+        <p>{ amount }</p>
+        </div>
+        <div>
+          <p>Total em produtos</p> 
+          <p>{ formatPrice(total) }</p>
+        </div>
+        <div>
+          <p>Descontos</p>
+          <p>{ formatPrice(desconto()) }</p>
+        </div>
+      </article>
+      <div>
+        <h2>Total</h2> <h2>{ formatPrice(total - desconto()) }</h2>
+      </div>
+      <ButtonF to="checkout"><button style={{ cursor: 'pointer' }}>Finalizar a compra</button></ButtonF>
+
+    </Resumo>
+
+  ) 
 }
 
-export default NavigationBar;
+export default ResumoPedido;
+

@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
+
+
 
 export const TextIcon = styled.div`
   display: flex;
@@ -12,6 +15,7 @@ export const TextIcon = styled.div`
   font-family:'Roboto', sans-serif;
 
   p {
+    color: black;
     margin-left: 5px;
   }
 `;
@@ -65,7 +69,8 @@ export const Busca = styled.form`
 
 `;
 
-export const Total = styled.div`
+export const Total = styled(Link)`
+  text-decoration: none;
   width: 210px;
   margin-left: auto;
 
@@ -81,6 +86,7 @@ export const Total = styled.div`
   font-family:'Roboto', sans-serif;
 
   p {
+    color: black;
     margin-left: 5px;
   }
 `;
