@@ -1,7 +1,7 @@
 import produce from 'immer';
 
 export default function cart(state=[], action) {
-  console.log(action)
+  // console.log(action)
 
 
   switch (action.type) {

@@ -1,19 +1,12 @@
 import styled from 'styled-components';
 
-
-/* Estilização da primeira section */
-
-export const Asd = styled.div`
+export const CheckOutBox = styled.form`
   margin: 40px 70px;
   display: flex;
   flex-direction: row;
 
   div {
     max-width: 370px;
-  }
-  form {
-    display: flex;
-    align-items: center;
   }
 
   input {
@@ -29,9 +22,14 @@ export const Asd = styled.div`
     padding: 8px;
     margin-top: 5px;
 
+
     font-family:'Roboto', sans-serif;
     font-size: 14px;
     font-weight: 500;
+
+    &:focus {
+      border:1px solid #424242; 
+    }
   }
 `;
 
@@ -53,12 +51,23 @@ export const LabelInput = styled.div`
     font-weight: 400;
     color: #616161;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+  }
+  input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+  }
 `;
 
 
 
-export const RuaNum = styled.form`
+export const RuaNum = styled.div`
+  display: flex;
   flex-direction: row;
+  align-items: center;
   
   input {
     width: 270px;
@@ -69,6 +78,30 @@ export const RuaNum = styled.form`
 
     input {
       width: 90px
+    }
+  }
+`;
+
+export const ButtonF = styled.div`
+  height: 50px;
+  width: 258px;
+  margin: 20px;
+  
+  
+  button {
+    height: 50px;
+    width: 258px;
+    flex: 1;
+    color: white;
+    background-color: #e53935;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+    border: none;
+
+    &:hover  {
+      opacity: 0.8;
     }
   }
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { formatPrice } from '../../util/format';
 import api from '../../services/api';
@@ -6,7 +6,7 @@ import api from '../../services/api';
 import * as CartActions from '../../store/modules/cart/actions';
 
 import ResumoPedido from '../resumoPedido';
-import { Shopping, ProductList, Descricao, Title, TextIcon, Contador, ValorTotal } from './styles';
+import { Shopping, ProductList, Descricao, Title, TextIcon, Contador, ValorTotal, ButtonF } from './styles';
 import { BiComment } from 'react-icons/bi';
 import { MdRemove, MdAdd } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
@@ -37,7 +37,6 @@ function ShoppingCart() {
         ))
       });
     }
-    
   // eslint-disable-next-line
   }, []);
 
@@ -75,9 +74,10 @@ function ShoppingCart() {
                 </ValorTotal>
               </li>
             )) }
-            
           </ProductList>
-          <ResumoPedido action="checkout"/>
+          <ResumoPedido>
+            <ButtonF to="checkout"><button style={{ cursor: 'pointer' }}>Finalizar a compra</button></ButtonF>
+          </ResumoPedido>
         </div>
       </Shopping>
     </>

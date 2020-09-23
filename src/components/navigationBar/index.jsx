@@ -1,7 +1,6 @@
 import React, { useState, useEffect   } from 'react';
 import { MdShoppingCart, MdMenu, MdSearch } from 'react-icons/md';
 import { formatPrice } from '../../util/format';
-import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -15,7 +14,7 @@ const NavigationBar = () => {
 
   useEffect(() => {
     api.get('/politicas-comerciais').then(resp => {
-      const data = resp.data.map(desc => {
+      resp.data.map(desc => {
         if (desc.tipo === 'valor_minimo'){
           setDescValorMin(desc);
         } else if (desc.tipo === 'quantidade_itens_minima') {

@@ -36,7 +36,7 @@ export const Box = styled.div`
 `; 
 
 export const Resumo = styled.section`
-  height: 302px;
+  height: fit-content;
   width: 300px;
   margin-left: auto;
   display: flex;

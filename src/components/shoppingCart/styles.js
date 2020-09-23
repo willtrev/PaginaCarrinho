@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Shopping = styled.section`
   display: flex;
@@ -84,11 +85,15 @@ export const Resumo = styled.section`
   }
 `;
 
-export const ButtonF = styled.div`
-  height: 90px;
-  padding: 20px;
+export const ButtonF = styled(Link)`
+  height: 50px;
+  width: 258px;
+  margin: 20px;
+  
   
   button {
+    height: 50px;
+    width: 258px;
     flex: 1;
     color: white;
     background-color: #e53935;
@@ -97,6 +102,10 @@ export const ButtonF = styled.div`
     font-size: 14px;
     letter-spacing: 0.1px;
     border: none;
+
+    &:hover  {
+      opacity: 0.8;
+    }
   }
 `;
 
@@ -219,5 +228,7 @@ export const ValorTotal = styled.div`
     background-color: white;
   }
 `;
+
+
 
 

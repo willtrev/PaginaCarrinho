@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { formatPrice } from '../../util/format';
-import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
 
-import {  Resumo, Box, ButtonF } from './styles';
+import {  Resumo, Box } from './styles';
 
 
-function ResumoPedido(link) {
+function ResumoPedido(props) {
   const [descQntMin, setDescQntMin] = useState([]);
   const [descValorMin, setDescValorMin] = useState([]);
 
@@ -16,7 +15,7 @@ function ResumoPedido(link) {
 
   useEffect(() => {
     api.get('/politicas-comerciais').then(resp => {
-      const data = resp.data.map(desc => {
+      resp.data.map(desc => {
         if (desc.tipo === 'valor_minimo'){
           setDescValorMin(desc);
         } else if (desc.tipo === 'quantidade_itens_minima') {
@@ -66,7 +65,8 @@ function ResumoPedido(link) {
       <div>
         <h2>Total</h2> <h2>{ formatPrice(total - desconto()) }</h2>
       </div>
-      <ButtonF to="checkout"><button style={{ cursor: 'pointer' }}>Finalizar a compra</button></ButtonF>
+      {/* <ButtonF to="checkout"><button style={{ cursor: 'pointer' }}>Finalizar a compra</button></ButtonF> */}
+      {props.children}
 
     </Resumo>
 
