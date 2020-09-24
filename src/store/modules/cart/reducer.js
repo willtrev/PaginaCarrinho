@@ -1,8 +1,7 @@
 import produce from 'immer';
 
 export default function cart(state=[], action) {
-  // console.log(action)
-
+  console.log(state)
 
   switch (action.type) {
     case 'ADD_TO_CART':
@@ -28,6 +27,18 @@ export default function cart(state=[], action) {
           }
         });
       }
+    case 'ADD_DESC_TO_PROD':{
+      return produce(state, draft => {
+        const productIndex = draft.findIndex(p => p.id === action.id)
+
+        if (productIndex >= 0){
+          draft[productIndex] = {
+            ...draft[productIndex],
+            observacao: action.desc,
+          }
+        }
+      });
+    }
     default:
       return state;
   }

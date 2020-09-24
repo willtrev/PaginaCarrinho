@@ -162,6 +162,25 @@ export const Descricao = styled.div`
     color: grey;
   }
 
+  input {
+    width: 180px;
+    margin-left: 3px;
+    height: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    border: 0;
+    color: darkred;
+
+    ::placeholder {
+      color: red;
+    }
+  }
+
+  /* input.nowYouDont {
+    display: none;
+  } */
+
 `;
 
 export const TextIcon = styled.article`
@@ -179,6 +198,19 @@ export const TextIcon = styled.article`
     align-items: center;
     margin-left: 5px;
     color: red;
+  }
+
+  span {
+    display: none;
+    font-style: italic;
+    position: absolute;
+    width: 210px;
+    margin-left: 22px;
+    height: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+    align-items: center;
+    text-align: center;
   }
 `;
 

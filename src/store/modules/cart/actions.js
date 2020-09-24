@@ -19,3 +19,11 @@ export function updateAmount(id, quantidade) {
     quantidade,
   };
 }
+
+export function addDescToProd(id, desc) {
+  return {
+    type: 'ADD_DESC_TO_PROD',
+    id,
+    desc: desc,
+  };
+}

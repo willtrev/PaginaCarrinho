@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { formatPrice } from '../../util/format';
 import api from '../../services/api';
@@ -15,6 +15,7 @@ function ShoppingCart() {
 
   const info = useSelector(state => state.cart);
   const dispatch = useDispatch();
+  const inputEl = useRef();
 
   function increment(product){
     dispatch(CartActions.updateAmount(product.id, product.quantidade + 1))
@@ -40,6 +41,13 @@ function ShoppingCart() {
   // eslint-disable-next-line
   }, []);
 
+  function handleDescricao(id , desc, e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+
+      dispatch(CartActions.addDescToProd(id, desc));
+    }     
+  }
+
   return(
     <>
       <Shopping>
@@ -56,7 +64,16 @@ function ShoppingCart() {
                   <h1>{product.nome}</h1>
                   <p>SKU {product.sku}</p>
                   <button>
-                   <TextIcon> <BiComment size="20px" /> <p>Adicionar observação</p> </TextIcon>
+                    <TextIcon>
+                      <BiComment size="20px" /> 
+                      {/* <span >Deixei um comentário neste produto</span> */}
+                      <input 
+                        // className="nowYouSeeMe"
+                        onKeyDown={e => handleDescricao(product.id, e.target.value, e)}
+                        placeholder="Adicionar observação"
+                      >
+                      </input>
+                    </TextIcon>
                   </button>
                 </Descricao>
                 <Contador>
