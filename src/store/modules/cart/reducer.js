@@ -1,7 +1,6 @@
 import produce from 'immer';
 
 export default function cart(state=[], action) {
-  console.log(state)
 
   switch (action.type) {
     case 'ADD_TO_CART':
@@ -40,6 +39,6 @@ export default function cart(state=[], action) {
       });
     }
     default:
-      return state;
+      return state
   }
 }

@@ -11,6 +11,8 @@ const NavigationBar = () => {
   const info = useSelector(state => state.cart);
   const [descQntMin, setDescQntMin] = useState([]);
   const [descValorMin, setDescValorMin] = useState([]);
+  const [total, setTotal] = useState('');
+  const [amount, setAmount] = useState('');
 
   useEffect(() => {
     api.get('/politicas-comerciais').then(resp => {
@@ -24,13 +26,23 @@ const NavigationBar = () => {
     })
   }, [])
 
-  const amount = info.reduce((amount, product) => {
-    return (amount += product.quantidade);
-  }, 0);
-
-  const total = (info.reduce((total, product) => {
-    return total + product.valor_unitario * product.quantidade;
-  }, 0));
+  useEffect(()=> {
+    if(info){
+      const amount = info.reduce((amount, product) => {
+        return (amount += product.quantidade);
+      }, 0);
+    
+      const total = (info.reduce((total, product) => {
+        return total + product.valor_unitario * product.quantidade;
+      }, 0));
+      setTotal(total);
+      setAmount(amount);
+    } else {
+      setTotal(0);
+      setAmount(0);
+    }
+    
+  }, [info])
 
   function desconto(){
     if (amount >= descQntMin.valor){

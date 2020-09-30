@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { formatPrice } from '../../util/format';
-import api from '../../services/api';
 
 import * as CartActions from '../../store/modules/cart/actions';
+
+import useApi from '../../hooks/useApi';
 
 import ResumoPedido from '../resumoPedido';
 import { Shopping, ProductList, Descricao, Title, TextIcon, Contador, ValorTotal, ButtonF } from './styles';
@@ -14,8 +14,9 @@ import { IoMdTrash } from 'react-icons/io';
 function ShoppingCart() {
 
   const info = useSelector(state => state.cart);
+  const api = useApi();
+
   const dispatch = useDispatch();
-  const inputEl = useRef();
 
   function increment(product){
     dispatch(CartActions.updateAmount(product.id, product.quantidade + 1))
@@ -25,21 +26,16 @@ function ShoppingCart() {
     dispatch(CartActions.updateAmount(product.id, product.quantidade - 1))
   };
 
-  
+
   useEffect(() => {
     if(info.length === 0){
-      api.get('/carrinho').then(response => {
-        const data = response.data.map(product => ({
-          ...product,
-          priceFormatted: formatPrice(product.valor_unitario),
-        }));
-        data.map(produto => (
-          dispatch(CartActions.addToCart(produto))
-        ))
-      });
+      api.map(produto => (
+        dispatch(CartActions.addToCart(produto))
+      ))
     }
   // eslint-disable-next-line
-  }, []);
+  }, [api]);
+
 
   function handleDescricao(id , desc, e) {
     if (e.key === 'Enter' || e.keyCode === 13) {
@@ -53,8 +49,8 @@ function ShoppingCart() {
       <Shopping>
         <Title>Carrinho</Title>
         <div>
-          <ProductList>
-            { info.map(product => (
+          <ProductList data-testid="lista-itens">
+            {info ? info.map(product => (
               <li key={product.id}>
                 <img
                   src={product.url_imagem}
@@ -70,7 +66,7 @@ function ShoppingCart() {
                       <input 
                         // className="nowYouSeeMe"
                         onKeyDown={e => handleDescricao(product.id, e.target.value, e)}
-                        placeholder="Adicionar observação"
+                        placeholder={product.observacao ? "Deixei um comentário neste produto" : "Adicionar observação"}
                       >
                       </input>
                     </TextIcon>
@@ -90,7 +86,7 @@ function ShoppingCart() {
                   </button>
                 </ValorTotal>
               </li>
-            )) }
+            )): "Carregando..."}
           </ProductList>
           <ResumoPedido>
             <ButtonF to="checkout"><button style={{ cursor: 'pointer' }}>Finalizar a compra</button></ButtonF>

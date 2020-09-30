@@ -23,7 +23,8 @@ const Checkout = () => {
     setProd(carrinho.map(a => {
       const s = {
         id: a.id,
-        quantidade: a.quantidade
+        quantidade: a.quantidade,
+        observacao: a.observacao
       }
       return s
     }))
