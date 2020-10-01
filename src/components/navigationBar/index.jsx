@@ -16,6 +16,7 @@ const NavigationBar = () => {
 
   useEffect(() => {
     api.get('/politicas-comerciais').then(resp => {
+      // eslint-disable-next-line
       resp.data.map(desc => {
         if (desc.tipo === 'valor_minimo'){
           setDescValorMin(desc);
@@ -31,7 +32,7 @@ const NavigationBar = () => {
       const amount = info.reduce((amount, product) => {
         return (amount += product.quantidade);
       }, 0);
-    
+
       const total = (info.reduce((total, product) => {
         return total + product.valor_unitario * product.quantidade;
       }, 0));
@@ -41,16 +42,16 @@ const NavigationBar = () => {
       setTotal(0);
       setAmount(0);
     }
-    
+
   }, [info])
 
   function desconto(){
     if (amount >= descQntMin.valor){
-      return (total * descQntMin.desconto_percentual / 100) 
+      return (total * descQntMin.desconto_percentual / 100)
     } else if (total >= descValorMin.valor ){
-      return (total * descValorMin.desconto_percentual / 100) 
+      return (total * descValorMin.desconto_percentual / 100)
     } else if (amount >= descQntMin.valor && total >= descValorMin.valor){
-      return (total * (Math.max(descValorMin.desconto_percentual, descQntMin.desconto_percentual)) / 100) 
+      return (total * (Math.max(descValorMin.desconto_percentual, descQntMin.desconto_percentual)) / 100)
     }else {
       return 0;
     }
@@ -62,7 +63,7 @@ const NavigationBar = () => {
         <TextIcon> <MdMenu size="20px" /> <p>SETORES</p> </TextIcon>
         <TextIcon> <p>OFERTAS</p> </TextIcon>
       </MenuGroup>
-      <Busca> 
+      <Busca>
         <input placeholder="O que voce procura?"/>
         <MdSearch></MdSearch>
       </Busca>
