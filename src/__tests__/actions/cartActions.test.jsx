@@ -35,8 +35,8 @@ describe('actions', () => {
     }
     const expectedAction = {
       type: 'UPDATE_AMOUNT',
-      id: 1,
-      quantidade: 3,
+      id: product.id,
+      quantidade: product.quantidade,
     }
     expect(actions.updateAmount(product.id, product.quantidade)).toEqual(expectedAction)
   })
@@ -49,7 +49,7 @@ describe('actions', () => {
     }
     const expectedAction = {
       type: 'ADD_DESC_TO_PROD',
-      id: 1,
+      id: product.id,
       desc,
     }
     expect(actions.addDescToProd(product.id, product.desc)).toEqual(expectedAction)

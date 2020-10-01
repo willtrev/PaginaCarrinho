@@ -5,7 +5,7 @@ import * as CartActions from '../../store/modules/cart/actions';
 
 import useApi from '../../hooks/useApi';
 
-import ResumoPedido from '../resumoPedido';
+import ResumoPedido from '../ResumoPedido';
 import { Shopping, ProductList, Descricao, Title, TextIcon, Contador, ValorTotal, ButtonF } from './styles';
 import { BiComment } from 'react-icons/bi';
 import { MdRemove, MdAdd } from 'react-icons/md';
@@ -41,7 +41,7 @@ function ShoppingCart() {
     if (e.key === 'Enter' || e.keyCode === 13) {
 
       dispatch(CartActions.addDescToProd(id, desc));
-    }     
+    }
   }
 
   return(
@@ -61,9 +61,9 @@ function ShoppingCart() {
                   <p>SKU {product.sku}</p>
                   <button>
                     <TextIcon>
-                      <BiComment size="20px" /> 
+                      <BiComment size="20px" />
                       {/* <span >Deixei um comentário neste produto</span> */}
-                      <input 
+                      <input
                         // className="nowYouSeeMe"
                         onKeyDown={e => handleDescricao(product.id, e.target.value, e)}
                         placeholder={product.observacao ? "Deixei um comentário neste produto" : "Adicionar observação"}
@@ -94,7 +94,7 @@ function ShoppingCart() {
         </div>
       </Shopping>
     </>
-  ) 
+  )
 }
 
 export default ShoppingCart;

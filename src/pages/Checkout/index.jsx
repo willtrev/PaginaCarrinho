@@ -1,11 +1,10 @@
 import React from 'react';
 
-import InfoHeader from '../../components/infoHeader';
-import Checkout from '../../components/checkout';
-import PosNav from '../../components/posNav';
-import NavigationBar from '../../components/navigationBar';
-
-import { StickTop } from './styles' ;
+import InfoHeader from '../../components/InfoHeader';
+import Checkout from '../../components/Checkout';
+import PosNav from '../../components/PosNav';
+import NavigationBar from '../../components/NavigationBar';
+import StickTop from '../../components/StickTop';
 
 const Carrinho = () => {
   return(
@@ -17,7 +16,7 @@ const Carrinho = () => {
       <PosNav />
       <Checkout />
     </>
-  ) 
+  )
 }
 
 export default Carrinho;

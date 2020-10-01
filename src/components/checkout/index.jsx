@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import api from '../../services/api';
 
 import { CheckOutBox, RuaNum, Title, LabelInput, ButtonF } from './styles';
-import ResumoPedido from '../resumoPedido';
+import ResumoPedido from '../ResumoPedido';
 
 
 
@@ -29,7 +29,7 @@ const Checkout = () => {
       return s
     }))
   }, [carrinho])
- 
+
   async function handleCheckout(e){
     e.preventDefault();
 
@@ -61,13 +61,13 @@ const Checkout = () => {
   }
 
   return(
-    <CheckOutBox onSubmit={handleCheckout}> 
+    <CheckOutBox onSubmit={handleCheckout}>
       <div>
         <Title>Endereço</Title>
         <RuaNum>
           <LabelInput>
             <label>Rua</label>
-            <input 
+            <input
               value={rua}
               onChange={e => setRua(e.target.value)}
               required
@@ -75,7 +75,7 @@ const Checkout = () => {
           </LabelInput>
           <LabelInput>
             <label >Numero</label>
-            <input 
+            <input
               type="number"
               min="0"
               max="999999"
@@ -87,7 +87,7 @@ const Checkout = () => {
         </RuaNum>
         <LabelInput>
           <label>Bairro</label>
-          <input 
+          <input
             value={bairro}
             onChange={e => setBairro(e.target.value)}
             required
@@ -96,7 +96,7 @@ const Checkout = () => {
         <Title>Pague pelo site</Title>
         <LabelInput>
           <label>Numero do cartão</label>
-          <input 
+          <input
             type="number"
             min="0"
             max="9999999999999999"
@@ -107,7 +107,7 @@ const Checkout = () => {
         </LabelInput>
         <LabelInput>
           <label>CVC</label>
-          <input 
+          <input
             type="number"
             min="0"
             max="9999"
@@ -121,7 +121,7 @@ const Checkout = () => {
         <ButtonF><button style={{ cursor: 'pointer' }} type="submit">Finalizar a compra</button></ButtonF>
       </ResumoPedido>
     </CheckOutBox>
-  ) 
+  )
 }
 
 export default Checkout;
