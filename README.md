@@ -4,3 +4,5 @@ Use `yarn` para baixar as dependencias.
 
 Use `yarn start` para rodar a aplicação modo de desenvolvimento.
 Abra http://localhost:3000 para ver a aplicação em seu browser.
+
+Use `yarn test` para rodar os testes automaticos.
