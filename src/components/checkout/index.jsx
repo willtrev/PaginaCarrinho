@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import api from '../../services/api';
 
 import { CheckOutBox, RuaNum, Title, LabelInput, ButtonF } from './styles';
-import ResumoPedido from '../ResumoPedido';
+import ResumoPedido from '../resumoPedido';
 
 
 

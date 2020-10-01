@@ -5,7 +5,7 @@ import * as CartActions from '../../store/modules/cart/actions';
 
 import useApi from '../../hooks/useApi';
 
-import ResumoPedido from '../ResumoPedido';
+import ResumoPedido from '../resumoPedido';
 import { Shopping, ProductList, Descricao, Title, TextIcon, Contador, ValorTotal, ButtonF } from './styles';
 import { BiComment } from 'react-icons/bi';
 import { MdRemove, MdAdd } from 'react-icons/md';

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import InfoHeader from '../../components/InfoHeader';
-import ShoppingCart from '../../components/ShoppingCart';
-import PosNav from '../../components/PosNav';
-import NavigationBar from '../../components/NavigationBar';
-import Footer from '../../components/Footer';
+import InfoHeader from '../../components/infoHeader';
+import ShoppingCart from '../../components/shoppingCart';
+import PosNav from '../../components/posNav';
+import NavigationBar from '../../components/navigationBar';
+import Footer from '../../components/footer';
 import StickTop from '../../components/StickTop';
 
 const Carrinho = () => {
