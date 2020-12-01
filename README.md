@@ -1,4 +1,4 @@
-Aplicação desenvolvida para o teste técnico de Desenvolvedor Frontend da Mercos.
+Aplicação desenvolvida em React. Utilizando React Redux e Styled Components.
 
 Use `yarn` para baixar as dependencias.
 
@@ -9,4 +9,4 @@ Use `yarn test` para rodar os testes automaticos.
 
 
 
-O site pode ser encontrado em: `teste-frontend-mercos.netlify.app`
+O site pode ser encontrado em: `https://shopping-cart-redux-styled.netlify.app/`
