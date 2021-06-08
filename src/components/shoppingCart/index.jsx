@@ -5,7 +5,7 @@ import * as CartActions from '../../store/modules/cart/actions';
 
 import useApi from '../../hooks/useApi';
 
-import ResumoPedido from '../resumoPedido';
+import OrderSummary from '../orderSummary';
 import { Shopping, ProductList, Descricao, Title, TextIcon, Contador, ValorTotal, ButtonF } from './styles';
 import { BiComment } from 'react-icons/bi';
 import { MdRemove, MdAdd } from 'react-icons/md';
@@ -88,9 +88,9 @@ function ShoppingCart() {
               </li>
             )): "Carregando..."}
           </ProductList>
-          <ResumoPedido>
+          <OrderSummary>
             <ButtonF to="checkout"><button style={{ cursor: 'pointer' }}>Finalizar a compra</button></ButtonF>
-          </ResumoPedido>
+          </OrderSummary>
         </div>
       </Shopping>
     </>

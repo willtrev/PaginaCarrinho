@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import api from '../../services/api';
 
 import { CheckOutBox, RuaNum, Title, LabelInput, ButtonF } from './styles';
-import ResumoPedido from '../resumoPedido';
+import OrderSummary from '../orderSummary';
 
 
 
@@ -117,9 +117,9 @@ const Checkout = () => {
           />
         </LabelInput>
       </div>
-      <ResumoPedido >
+      <OrderSummary >
         <ButtonF><button style={{ cursor: 'pointer' }} type="submit">Finalizar a compra</button></ButtonF>
-      </ResumoPedido>
+      </OrderSummary>
     </CheckOutBox>
   )
 }

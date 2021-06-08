@@ -5,15 +5,15 @@ import ShoppingCart from '../../components/shoppingCart';
 import PosNav from '../../components/posNav';
 import NavigationBar from '../../components/navigationBar';
 import Footer from '../../components/footer';
-import StickTop from '../../components/StickTop';
+import stickTop from '../../components/stickTop';
 
 const Carrinho = () => {
   return(
     <>
-      <StickTop>
+      <stickTop>
         <InfoHeader />
         <NavigationBar />
-      </StickTop>
+      </stickTop>
       <PosNav />
       <ShoppingCart />
       <Footer />

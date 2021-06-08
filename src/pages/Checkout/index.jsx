@@ -4,7 +4,7 @@ import InfoHeader from '../../components/infoHeader';
 import Checkout from '../../components/checkout';
 import PosNav from '../../components/posNav';
 import NavigationBar from '../../components/navigationBar';
-import StickTop from '../../components/StickTop';
+import StickTop from '../../components/stickTop';
 
 const Carrinho = () => {
   return(
