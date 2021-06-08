@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useForm } from "react-hook-form";
 
 import api from '../../services/api';
 
-import { CheckOutBox, RuaNum, Title, LabelInput, ButtonF } from './styles';
+import { CheckOutBox, RuaNum, Title, LabelInput, ButtonF, WarningMessage } from './styles';
 import OrderSummary from '../orderSummary';
 
 
 
+
 const Checkout = () => {
-
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const carrinho = useSelector(state => state.cart);
-
-  const [ rua, setRua ] = useState('');
-  const [ numero, setNumero ] = useState('');
-  const [ bairro, setBairro ] = useState('');
-  const [ cartao, setCartao ] = useState('');
-  const [ cvc, setCvc ] = useState('');
   const [ prod, setProd ] = useState(['']);
 
   useEffect(() => {
@@ -30,29 +26,25 @@ const Checkout = () => {
     }))
   }, [carrinho])
 
-  async function handleCheckout(e){
-    e.preventDefault();
-
+  async function handleCheckout(data){
     if(carrinho.length === 0){
       return (alert('O carrinho está vazio'))
     }
-    const data = {
-      itens:
-        prod
-      ,
+    const formatedData = {
+      itens: prod,
       endereco: {
-        rua,
-        bairro,
-        numero
+        rua: data.rua,
+        bairro: data.bairro,
+        numero: data.numero
       },
       cartao: {
-        numero: cartao,
-        cvc
+        numero: data.cartao,
+        cvc: data.cvc
       }
     }
 
     try {
-      const response = await api.post('/carrinho', data);
+      const response = await api.post('/carrinho', formatedData);
       console.log(response);
       alert('Pagamento efetuado com sucesso')
     } catch (err){
@@ -61,60 +53,52 @@ const Checkout = () => {
   }
 
   return(
-    <CheckOutBox onSubmit={handleCheckout}>
+    <CheckOutBox onSubmit={handleSubmit(handleCheckout)}>
       <div>
         <Title>Endereço</Title>
         <RuaNum>
           <LabelInput>
             <label>Rua</label>
             <input
-              value={rua}
-              onChange={e => setRua(e.target.value)}
-              required
-            />
+            {...register("rua", {required: 'O campo rua é obrigatório'})}
+          />
+          {errors.rua && <WarningMessage>{errors.rua.message}</WarningMessage> }
           </LabelInput>
           <LabelInput>
             <label >Numero</label>
             <input
-              type="number"
-              min="0"
-              max="999999"
-              value={numero}
-              onChange={e => setNumero(e.target.value)}
-              required
-            />
+            {...register("numero", {required: 'O campo numero é obrigatório'} )}
+          />
+          {errors.numero && <WarningMessage>{errors.numero.message}</WarningMessage> }
           </LabelInput>
         </RuaNum>
         <LabelInput>
           <label>Bairro</label>
           <input
-            value={bairro}
-            onChange={e => setBairro(e.target.value)}
-            required
+            {...register("bairro", {required: 'O campo bairro é obrigatório'})}
           />
+          {errors.bairro && <WarningMessage>{errors.bairro.message}</WarningMessage> }
         </LabelInput>
         <Title>Pague pelo site</Title>
         <LabelInput>
           <label>Numero do cartão</label>
           <input
-            type="number"
-            min="0"
-            max="9999999999999999"
-            value={cartao}
-            onChange={e => setCartao(e.target.value)}
-            required
+            {...register("cartao", {required: 'O campo cartão é obrigatório', pattern: {
+              value:/^[0-9]{16}/,
+              message: 'O campo deve conter 16 digitos'
+            }, maxLength: {value: 16, message: 'O campo deve conter 16 digitos'} })}
           />
+          {errors.cartao && <WarningMessage>{errors.cartao.message}</WarningMessage> }
         </LabelInput>
         <LabelInput>
           <label>CVC</label>
           <input
-            type="number"
-            min="0"
-            max="9999"
-            value={cvc}
-            onChange={e => setCvc(e.target.value)}
-            required
+            {...register("cvc", {required: 'O campo cvc é obrigatório',
+            minLength: {value: 3, message: 'O campo CVC deve ter 3 digitos'},
+            maxLength: {value: 3, message: 'O campo CVC deve ter 3 digitos'}
+          })}
           />
+          {errors.cvc && <WarningMessage>{errors.cvc.message}</WarningMessage> }
         </LabelInput>
       </div>
       <OrderSummary >
