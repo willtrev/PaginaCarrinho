@@ -37,9 +37,9 @@ const Checkout = () => {
       return (alert('O carrinho está vazio'))
     }
     const data = {
-      itens: {
+      itens:
         prod
-      },
+      ,
       endereco: {
         rua,
         bairro,
